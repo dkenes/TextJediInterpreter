@@ -1,0 +1,13 @@
+new int a;
+new int b;
+new int c;
+new text d;
+
+a := 30;
+b := 1;
+c := a - b ;
+d := asString(c);
+output d;
+
+
+
