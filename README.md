@@ -1,56 +1,80 @@
 # TextJedi-Interpreter
 An interpreter for the made-up language TextJedi.
 
-TextJedi Language is a programming language that was designed for editing text files mainly by cutting and pasting operations. (it is imaginary)
-Data Types: The only two data types in TextJedi are Strings (called as text) and Integers. String constants are written “like this” and integer constants are natural (zero or positive whole) numbers.
-All variables should be declared before they are used. Declarations are done with the “new” keyword.
-Ex:  new text myText;  new int myInt; /* This is a comment*/
-			  /* And two lines of code on one line is OK */
-Assignment, Operations and Functions:
-“:=”  is the assignment operator. On the left hand side there has to be a variable name and on the right hand side there may be either a value, an arithmetic expression or a function call. A value is either a constant or a variable. An arithmetic expression is composed of two operands and an operator written in infix form. Valid operators are “+” and           “-”.
-Ex: 
- MyText := “Hello world”;
- myInt:=0;
- myInt := 2 + yourInt;
- MyText:= FirstText+SecondText;
-•	Subtracting a larger value from a smaller value generates an error message. Other than that Addition and subtraction on integers works just as expected.
-•	Addition over text values results in concatenation of the two texts
-Ex:  s := “Hello”+ “ world”; /*Assigns “Hello world” to s*/
-•	Subtraction over text values results in the removal of the first occurrence of the Subtrahend from the Minuend (finds the substring and cuts and removes it)
-Ex:  myString := “Hello world”-“wo”;  /* Assigns “Hello rld” to myString*/
-If the substring cannot be found, it is not an error condition. However, if the second string is bigger than the first one, an error message is generated.
-•	A function call is a call made to one of the predefined (built in) functions of the language. The predefined functions are as follows:
-size(myText) : returns the size of myText as an int
-subs(myText, begin, end) : returns substring of myText between characters marked by the two integers begin and end
-locate(bigText, smallText, start): Finds (the first occurrence of)  smallText in bigtext and returns its position as an integer. It returns 0 if it fails to find it. Starts its search from the location marked by the integer “start”.
-insert(myText, location, insertText) : inserts insertText into the position marked by the integer “location”  of myText and returns the resulting text.
-override(myText,location, ovrText): writes ovrText onto myText by overriding whatever that was previously there, starting from the location (given as an integer) If the writing operation exceeds the size of myText, it terminates at the end of myText without creating any error condition.
-asString(myInt): returns myInt as a string (type conversion)
-asText(myString): returns myString as an int
-    
-Commands:
-read myString from myTextFile; /* Reads a string from a text file called myTextFile.txt Please note that there is no size limit*/
-write myText to yourTextFile;  /* Write the string called myText onto a text file named as yourTextFile */
-input myText prompt promptText; /* Receive input from keyboard into myText. Use promptText as a prompt. Max 100 characters buffer is enough*/
-output myText;  /* Write myText on the screen*/
+# TextJedi Language Overview
 
-Lexical rules for the programming language TextJedi  are as follows:
-1- Identifiers: 
-•	Maximum identifier size is 30 characters. If you use an identifier larger than that, the lexical analyzer issues an error message.
-•	TextJedi language is case sensitive, and all keywords are lower case.
-•	Identifiers start with an alphabetic character (any letter) and are composed of one or more letters/digits/_ (underscore)
-2- Integer constants
-•	Maximum integer size is the same as a C unsigned int.
-•	Negative values are not supported. All integers are zero or positive.
-3- Operators
-•	Valid operators of the language are +,-,:=
-4- String constants
-•	String constants of TextJedi are delimited by double quotes (ASCII code 34)as in “this is a string”
-•	String constants have unlimited size
-•	String constants cannot contain the double quote character. when you reach one, the string terminates.
-•	If a string constant cannot terminate before the file end, there should be a lexical error issued.
-6- Keywords:
-•	Keywords are: new, int, text, size, subs, locate, insert, override, read, write, from, to, input, output, asText, asString
-7- End of line mark:  ;
-8- Comments: Anything between /* and */ is a comment.
-•	If a comment fails to terminate before the file end, there should be a lexical error issued
+TextJedi Language is a programming language designed primarily for editing text files using cutting and pasting operations. This language supports only two data types and includes various operations and built-in functions tailored to text manipulation.
+
+## Data Types
+
+- Strings (text): Represented by double quotes, e.g., "Hello World".
+- Integers: Natural numbers (zero or positive whole numbers).
+
+Variables must be declared before use using the 'new' keyword:
+
+    new text myText;
+    new int myInt; /* This is a comment */
+
+## Assignment, Operations, and Functions
+
+- The assignment operator is ':='.
+- Arithmetic expressions use infix notation with '+' (addition) and '-' (subtraction) operators.
+  
+Examples:
+    myText := "Hello world";
+    myInt := 0;
+    myInt := 2 + yourInt;
+    myText := FirstText + SecondText;
+
+### Special Operations
+
+- Addition on texts concatenates two strings.
+  
+      s := "Hello" + " world"; // Assigns "Hello world" to s
+
+- Subtraction on texts removes the first occurrence of the subtrahend from the minuend.
+  
+      myString := "Hello world" - "wo"; // Assigns "Hello rld" to myString
+
+### Functions
+
+- size(myText): Returns the size of myText as an integer.
+- subs(myText, begin, end): Returns a substring of myText from begin to end.
+- locate(bigText, smallText, start): Returns the position of the first occurrence of smallText in bigText starting from start.
+- insert(myText, location, insertText): Inserts insertText into myText at location.
+- override(myText, location, ovrText): Overwrites myText at location with ovrText.
+- asString(myInt): Converts an integer to a string.
+- asText(myString): Converts a string to an integer.
+
+## Commands
+
+    read myString from myTextFile; // Reads from myTextFile.txt
+    write myText to yourTextFile; // Writes myText to yourTextFile
+    input myText prompt promptText; // Inputs from keyboard
+    output myText; // Displays myText on screen
+
+## Lexical Rules
+
+1. Identifiers:
+   - Max size: 30 characters.
+   - Must start with a letter and may include digits and underscores.
+   - Case sensitive.
+
+2. Integer constants:
+   - Max size: equivalent to a C unsigned int.
+   - Only zero or positive values.
+
+3. Operators: '+', '-', ':='.
+
+4. String constants:
+   - Delimited by double quotes.
+   - Unlimited size but cannot contain double quotes.
+
+5. Keywords:
+   - new, int, text, size, subs, locate, insert, override, read, write, from, to, input, output, asText, asString.
+
+6. End of Line Mark: ';'.
+
+7. Comments:
+   - Anything between /* and */.
+   - Must terminate before file end.
